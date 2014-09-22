@@ -19,7 +19,7 @@ public class Participant {
 	private int id;
 	
 	/** The car owner name. */
-	private String name;
+	private String nameee;
 	
 	/** the ref to the owned car. */
 	private Car car;
