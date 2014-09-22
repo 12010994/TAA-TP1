@@ -17,22 +17,30 @@ public class Participant {
 	
 	/** The id. */
 	private int id;
+	
+	/** The car owner name. */
+	private String name;
+	
+	/** the ref to the owned car. */
+	private Car car;
 
-	/**
-	 * Gets the id.
-	 * @return the id
-	 */
 	@Id
 	public int getId() {
 		return id;
 	}
 
-	/**
-	 * Sets the id.
-	 * @param id the new id
-	 */
+	
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 
 }
