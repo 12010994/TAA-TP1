@@ -3,6 +3,7 @@ package fr.istic.m2gl.taa.tp1;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -43,6 +44,7 @@ public class Event {
 	}
 
 	@Id
+	@GeneratedValue
 	public int getId() {
 		return id;
 	}

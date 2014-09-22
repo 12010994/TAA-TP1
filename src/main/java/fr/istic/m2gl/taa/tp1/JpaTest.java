@@ -1,7 +1,5 @@
 package fr.istic.m2gl.taa.tp1;
 
-import java.util.Date;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -33,20 +31,28 @@ public class JpaTest {
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
 		manager = factory.createEntityManager();
-		JpaTest test = new JpaTest(manager);
+		JpaTest test = new JpaTest(manager); //?
 
-		EntityTransaction tx = manager.getTransaction();
+		EntityTransaction tx = manager.getTransaction(); //?
 		tx.begin();
 			
 		EventList eventList = new EventList();
 		eventList.addEvent("12-12-12 12h12", "Berlin");
+		eventList.addEvent("13-12-13 13h13", "Paris");
+		eventList.addEvent("11-11-11 11h11", "Rennes");
+		
+		Event event = (Event) JpaTest.manager.createQuery(
+				"FROM Event WHERE id=2")
+				.getSingleResult();
+		System.out.println(event.getPlace());
 		
 		tx.commit();
 		
 		/*
 		Enseignant es = (Enseignant) manager.createQuery(
 				"select e1 from Enseignant as e1 where e1.nom='barais'")
-				.getSingleResult();*/
+				.getSingleResult();
+		*/
 		
 	}
 
