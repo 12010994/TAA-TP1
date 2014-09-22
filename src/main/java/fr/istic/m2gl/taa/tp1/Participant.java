@@ -3,8 +3,8 @@ package fr.istic.m2gl.taa.tp1;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Participant.
  * @author Victor PETIT - Amandine MANCEAU
@@ -19,16 +19,16 @@ public class Participant {
 	private int id;
 	
 	/** The car owner name. */
-	private String nameee;
+	private String name;
 	
-	/** the ref to the owned car. */
+	/** the reference to the owner car. */
+	@Transient
 	private Car car;
 
 	@Id
 	public int getId() {
 		return id;
 	}
-
 	
 	public void setId(int id) {
 		this.id = id;
@@ -41,6 +41,16 @@ public class Participant {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Transient
+	public Car getCar() {
+		return car;
+	}
+
+	public void setCar(Car car) {
+		this.car = car;
+	}
+	
 	
 
 }

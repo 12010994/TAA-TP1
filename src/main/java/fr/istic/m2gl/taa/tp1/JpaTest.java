@@ -30,22 +30,19 @@ public class JpaTest {
 	 * The main method.
 	 * @param args the arguments */
 	public static void main(String[] args) {
+		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
 		manager = factory.createEntityManager();
 		JpaTest test = new JpaTest(manager);
 
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
-
-		try {
-
-			Event eventTest1 = new Event(new Date(), "Rennes");
-			manager.persist(eventTest1);
-					
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			
+		EventList eventList = new EventList();
+		eventList.addEvent("12-12-12 12h12", "Berlin");
+		
 		tx.commit();
+		
 		/*
 		Enseignant es = (Enseignant) manager.createQuery(
 				"select e1 from Enseignant as e1 where e1.nom='barais'")

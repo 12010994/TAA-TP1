@@ -1,14 +1,17 @@
 package fr.istic.m2gl.taa.tp1;
 
-import java.util.Date;
 import java.util.List;
 
 public class EventList {
 
-	public synchronized void addEvent(){
+	public synchronized void addEvent(String date, String place){
 		Event event;
 		try {
-			event = new Event(new Date(), "City");
+//			event = (Event) JpaTest.manager.createQuery(
+//					"FROM Event WHERE id=0")
+//					.getSingleResult();
+			
+			event = new Event(date, place);
 			JpaTest.manager.persist(event);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

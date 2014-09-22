@@ -1,9 +1,11 @@
 package fr.istic.m2gl.taa.tp1;
 
-import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * The Class Event.
@@ -18,7 +20,7 @@ public class Event {
 	private int id;
 	
 	/** The date of the event. */
-	private Date date;
+	private String date;
 	
 	/** The place of the event. */
 	private String place;
@@ -31,7 +33,7 @@ public class Event {
 	@Transient
 	private List<Car> cars;
 	
-	public Event(Date date, String place) throws Exception{
+	public Event(String date, String place) throws Exception{
 		this.date = date;
 		if (!place.equals("")){
 			this.place = place;
@@ -51,12 +53,12 @@ public class Event {
 	}
 
 	
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
 	
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

@@ -21,22 +21,18 @@ public class Car {
 	@Transient
 	private int owner;
 	
-	
 	@Id
 	public int getId() {
 		return id;
 	}
 	
-	
 	public void setId(int id) {
 		this.id = id;
 	}
 	
-	
 	public int getOwner() {
 		return owner;
 	}
-	
 	
 	public void setOwner(int owner) {
 		this.owner = owner;
