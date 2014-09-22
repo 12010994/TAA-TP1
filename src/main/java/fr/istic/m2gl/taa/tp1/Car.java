@@ -1,9 +1,10 @@
 package fr.istic.m2gl.taa.tp1;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 /**
  * The Class Car.
@@ -17,11 +18,14 @@ public class Car {
 	/** The id. */
 	private int id;
 	
-	/** The owner. */
-	@Transient
-	private int owner;
+	/** The car owner. */
+	private Participant owner;
+	
+	/** The remaining seat. */
+	private int seat;
 	
 	@Id
+	@GeneratedValue
 	public int getId() {
 		return id;
 	}
@@ -30,12 +34,23 @@ public class Car {
 		this.id = id;
 	}
 	
-	public int getOwner() {
+	@ManyToOne
+	public Participant getOwner() {
 		return owner;
 	}
 	
-	public void setOwner(int owner) {
+	public void setOwner(Participant owner) {
 		this.owner = owner;
 	}
+
+	public int getSeat() {
+		return seat;
+	}
+
+	public void setSeat(int seat) {
+		this.seat = seat;
+	}
+	
+	
 	
 }
