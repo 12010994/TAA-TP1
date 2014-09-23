@@ -35,11 +35,11 @@ public class Event {
 	private List<Car> cars;
 	
 	public Event(String date, String place) throws Exception{
-		this.date = date;
-		if (!place.equals("")){
-			this.place = place;
+		if ( date.equals("") || place.equals("") ){
+			throw new Exception("Event initialization : date or place cant be null");
 		}else{
-			throw new Exception("Event initialization : place cant be null");
+			this.date = date;
+			this.place = place;
 		}
 	}
 

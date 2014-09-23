@@ -2,13 +2,25 @@ package fr.istic.m2gl.taa.tp1;
 
 import java.util.List;
 
-public class EventList {
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
+public class EventList {
+	
+	public EntityManager manager;
+	
+	public EventList(EntityManager manager){
+		this.manager = manager;
+	}
+	
 	public synchronized void addEvent(String date, String place){
 		Event event;
 		try {
 			event = new Event(date, place);
-			JpaTest.manager.persist(event);
+			manager.persist(event);
+		} catch (NoResultException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -31,20 +31,12 @@ public class JpaTest {
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
 		manager = factory.createEntityManager();
+		
 		JpaTest test = new JpaTest(manager); //?
 
 		EntityTransaction tx = manager.getTransaction(); //?
 		tx.begin();
 			
-		EventList eventList = new EventList();
-		eventList.addEvent("12-12-12 12h12", "Berlin");
-		eventList.addEvent("13-12-13 13h13", "Paris");
-		eventList.addEvent("11-11-11 11h11", "Rennes");
-		
-		Event event = (Event) JpaTest.manager.createQuery(
-				"FROM Event WHERE id=2")
-				.getSingleResult();
-		System.out.println(event.getPlace());
 		
 		tx.commit();
 		
