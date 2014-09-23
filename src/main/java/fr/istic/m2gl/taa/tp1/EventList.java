@@ -5,6 +5,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
+/**
+ * TAA - TP 1 - JPA test : Event and car pooling manager.
+ * @author Victor PETIT - Amandine MANCEAU 
+ */
 public class EventList {
 	
 	public EntityManager manager;
