@@ -24,6 +24,9 @@ public class JpaTest {
 		tx.begin();
 			
 		
+		
+		
+		
 		tx.commit();
 		
 		/*
