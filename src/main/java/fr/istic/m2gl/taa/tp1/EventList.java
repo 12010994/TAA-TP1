@@ -35,8 +35,11 @@ public class EventList {
 		return null;
 	}
 	
-	public synchronized Event getEvent(){
-		return null;
+	public synchronized Event getEvent(int id){
+		//requete avec un id
+		Event event = (Event) JpaTest.manager.createQuery(
+				"FROM Event WHERE id=2").getSingleResult();
+		return(event);
 	}
 	
 	public synchronized void addParticipant(){
