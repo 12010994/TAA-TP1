@@ -6,7 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -37,15 +37,6 @@ public class Event {
 	@Transient
 	private List<Car> cars;
 	
-	public Event(String date, String place) throws Exception{
-		if ( date.equals("") || place.equals("") ){
-			throw new Exception("Event initialization : date or place cant be null");
-		}else{
-			this.date = date;
-			this.place = place;
-		}
-	}
-
 	@Id
 	@GeneratedValue
 	public int getId() {
@@ -79,6 +70,7 @@ public class Event {
 
 	
 	@OneToMany(cascade=CascadeType.REMOVE)
+	 @JoinColumn(name="eventId")
 	public List<Participant> getParticipants() {
 		return participants;
 	}

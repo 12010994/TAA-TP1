@@ -20,7 +20,9 @@ public class EventList {
 	public synchronized void addEvent(String date, String place){
 		Event event;
 		try {
-			event = new Event(date, place);
+			event = new Event();
+			event.setDate(date);
+			event.setPlace(place);
 			manager.persist(event);
 		} catch (NoResultException e) {
 			// TODO Auto-generated catch block
