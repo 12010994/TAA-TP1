@@ -18,14 +18,19 @@ public class JpaTest {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
 		manager = factory.createEntityManager();
 		
-		JpaTest test = new JpaTest(manager); //?
+		JpaTest test = new JpaTest(manager); 
 
-		EntityTransaction tx = manager.getTransaction(); //?
+		EntityTransaction tx = manager.getTransaction(); 
 		tx.begin();
 			
 		
+<<<<<<< df5cd4ccb5adb582a7b61d82f06a8701b77d2a32
 		
 		
+=======
+		EventList eventList = new EventList(manager);
+		eventList.getEvents();
+>>>>>>> d6a176701f330060e0c8505792b33ea11407dba7
 		
 		tx.commit();
 		

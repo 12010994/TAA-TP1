@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * The Class Car.
@@ -34,7 +35,7 @@ public class Car {
 		this.id = id;
 	}
 	
-	@ManyToOne
+	@Transient
 	public Participant getOwner() {
 		return owner;
 	}
