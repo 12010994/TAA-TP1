@@ -3,6 +3,7 @@ package fr.istic.m2gl.taa.tp1;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -23,8 +24,10 @@ public class Participant {
 	private String name;
 	
 	/** the reference to the owner car. */
-	@Transient
 	private Car car;
+	
+	/** the participated event. */
+	private Event event;
 
 	@Id
 	@GeneratedValue
@@ -44,15 +47,25 @@ public class Participant {
 		this.name = name;
 	}
 
-	@Transient
+	@ManyToOne
 	public Car getCar() {
 		return car;
 	}
 
+	
 	public void setCar(Car car) {
 		this.car = car;
 	}
-	
-	
 
+	@ManyToOne
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+	
+	
+	
 }

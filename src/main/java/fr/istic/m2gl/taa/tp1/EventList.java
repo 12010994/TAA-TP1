@@ -47,9 +47,17 @@ public class EventList {
 	}
 	
 	public synchronized void addParticipant(){
+		Participant participant = new Participant();
+		manager.persist(participant);
 	}
 	
 	public synchronized void addCar(){
+		Participant conductor = new Participant();
+		Car car = new Car();
+		car.setSeat(4);
+		//car.addParticipant;
+		manager.persist(car);
+		//user persist ?
 	}
 	
 }

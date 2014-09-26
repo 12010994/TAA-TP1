@@ -70,7 +70,7 @@ public class Event {
 
 	
 	@OneToMany(cascade=CascadeType.REMOVE)
-	 @JoinColumn(name="eventId")
+	@JoinColumn(name="eventId")
 	public List<Participant> getParticipants() {
 		return participants;
 	}
@@ -81,7 +81,7 @@ public class Event {
 	}
 
 	
-	 @Transient
+	@OneToMany(mappedBy="Event")
 	public List<Car> getCars() {
 		return cars;
 	}
