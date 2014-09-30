@@ -3,6 +3,7 @@ package fr.istic.m2gl.taa.tp1;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 
 /**
@@ -12,9 +13,11 @@ import javax.persistence.NoResultException;
 public class EventList {
 	
 	public EntityManager manager;
+	EntityTransaction tx;
 	
-	public EventList(EntityManager manager){
+	public EventList(EntityManager manager, EntityTransaction tx){
 		this.manager = manager;
+		this.tx = tx;
 	}
 	
 	public synchronized void addEvent(String date, String place){
@@ -23,6 +26,7 @@ public class EventList {
 			event = new Event();
 			event.setDate(date);
 			event.setPlace(place);
+			tx.begin();
 			manager.persist(event);
 		} catch (NoResultException e) {
 			// TODO Auto-generated catch block
@@ -31,6 +35,7 @@ public class EventList {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		tx.commit();
 	}
 	
 	public synchronized List<Event> getEvents(){

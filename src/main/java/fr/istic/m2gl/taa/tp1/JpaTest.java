@@ -21,12 +21,9 @@ public class JpaTest {
 		JpaTest test = new JpaTest(manager); 
 
 		EntityTransaction tx = manager.getTransaction(); 
-		tx.begin();
 			
-		EventList eventList = new EventList(manager);
+		EventList eventList = new EventList(manager, tx);
 		eventList.getEvents();
-		
-		tx.commit();
 		
 		/*
 		Enseignant es = (Enseignant) manager.createQuery(

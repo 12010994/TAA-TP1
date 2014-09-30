@@ -3,7 +3,9 @@ package fr.istic.m2gl.taa.tp1;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -47,7 +49,7 @@ public class Participant {
 		this.name = name;
 	}
 
-	@ManyToOne
+	@OneToMany
 	public Car getCar() {
 		return car;
 	}

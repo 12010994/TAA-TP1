@@ -52,7 +52,7 @@ public class Car {
 		this.event = event;
 	}
 
-	@OneToMany(mappedBy="Car")
+	@OneToMany(mappedBy="car")
 	public List<Participant> getPassengers() {
 		return passengers;
 	}

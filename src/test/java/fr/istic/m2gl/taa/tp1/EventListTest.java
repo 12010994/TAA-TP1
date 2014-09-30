@@ -19,16 +19,9 @@ public class EventListTest {
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
 		manager = factory.createEntityManager();
-
 		tx = manager.getTransaction();
-		tx.begin();
 
-		eventList = new EventList(manager);
-	}
-
-	@After
-	public void close(){
-		tx.commit();
+		eventList = new EventList(manager, tx);
 	}
 
 	@Test(expected = NoResultException.class)
