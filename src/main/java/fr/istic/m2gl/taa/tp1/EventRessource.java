@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-@Path("/event")
+@Path("/events")
 public class EventRessource {
 
 	@GET

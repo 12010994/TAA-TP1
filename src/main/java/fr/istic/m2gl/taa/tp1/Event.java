@@ -1,5 +1,6 @@
 package fr.istic.m2gl.taa.tp1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,7 +18,6 @@ import javax.persistence.Transient;
  * 
  */
 @Entity
-@Table(name = "EVENTS")
 public class Event {
 
 	/** The unique id of the event. */
@@ -30,12 +30,10 @@ public class Event {
 	private String place;
 	
 	/** The participants list. */
-	@Transient
-	private List <Participant> participants;
+	private List <Participant> participants = new ArrayList<Participant>();
 	
 	/** The cars list. */
-	@Transient
-	private List<Car> cars;
+	private List<Car> cars = new ArrayList<Car>();
 	
 	@Id
 	@GeneratedValue
@@ -81,7 +79,7 @@ public class Event {
 	}
 
 	
-	@OneToMany(mappedBy="Event")
+	@OneToMany(mappedBy="event1")
 	public List<Car> getCars() {
 		return cars;
 	}
@@ -90,6 +88,5 @@ public class Event {
 	public void setCars(List<Car> cars) {
 		this.cars = cars;
 	}
-	
 	
 }

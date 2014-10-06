@@ -1,5 +1,6 @@
 package fr.istic.m2gl.taa.tp1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,21 +17,19 @@ import javax.persistence.Transient;
  * 
  */
 @Entity
-@Table(name = "CARS")
 public class Car {
 	
 	/** The id. */
 	private int id;
 	
 	/** The remaining seat. */
-	@Transient
 	private int seat;
 	
 	/** the participated event. */
 	private Event event;
 	
 	/** the list of passengers */
-	private List<Participant> passengers;
+	private List<Participant> passengers =  new ArrayList<Participant>();
 	
 	
 	@Id
@@ -44,12 +43,22 @@ public class Car {
 	}
 	
 	@ManyToOne
+	private Event getEvent1() {
+		return event;
+	}
+
+	private void setEvent1(Event event) {
+		this.event = event;
+	}
+	
+	@Transient
 	public Event getEvent() {
 		return event;
 	}
 
 	public void setEvent(Event event) {
-		this.event = event;
+		this.setEvent1(event);
+		event.getCars().add(this);
 	}
 
 	@OneToMany(mappedBy="car")
@@ -61,14 +70,16 @@ public class Car {
 		this.passengers = passengers;
 	}
 
-	
-//-------------------Not in BDD
-	
-	public void setSeat(int seat){
+	public int getSeat() {
+		return seat;
+	}
+
+	public void setSeat(int seat) {
 		this.seat = seat;
 	}
-	public int getSeat(){
-		return passengers.size();
+	
+	public void takeSeat() {
+		seat--;
 	}
 	
 }

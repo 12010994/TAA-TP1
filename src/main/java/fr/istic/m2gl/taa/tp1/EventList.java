@@ -20,7 +20,7 @@ public class EventList {
 		this.tx = tx;
 	}
 	
-	public synchronized void addEvent(String date, String place){
+	public void addEvent(String date, String place){
 		Event event;
 		try {
 			event = new Event();
@@ -34,35 +34,56 @@ public class EventList {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			tx.commit();
 		}
-		tx.commit();
 	}
 	
-	public synchronized List<Event> getEvents(){
-		//TODO ajouter exception
+	public List<Event> getEvents(){
+		//return the list of all events
 		return manager.createQuery("FROM Event").getResultList();
-		
 	}
 	
-	public synchronized Event getEvent(int id){
-		//retourne l'evenement a partir de l'id
+	public Event getEvent(int id){
+		//return the id selected event 
 		Event event = (Event) manager.createQuery(
-				"FROM Event WHERE id=2").getSingleResult();
+				"FROM Event WHERE id="+id).getSingleResult();
 		return(event);
 	}
 	
-	public synchronized void addParticipant(){
+	public Participant addParticipant(int idEvent, String name){
+		tx.begin();
+		Event event = getEvent(idEvent);
 		Participant participant = new Participant();
+		participant.setName(name);
+		participant.setEvent(event);
 		manager.persist(participant);
+		tx.commit();
+		return participant;
 	}
 	
-	public synchronized void addCar(){
-		Participant conductor = new Participant();
+
+	
+	public void addCar(int idEvent, int nbSeat){
+		tx.begin();
+		Event event = getEvent(idEvent);
 		Car car = new Car();
-		car.setSeat(4);
-		//car.addParticipant;
+		car.setSeat(nbSeat);
+		car.setEvent(event);
 		manager.persist(car);
-		//user persist ?
+		tx.commit();
+	}
+	
+	public void addToCar(int idCar, Participant participant){
+		tx.begin();
+		Car car = (Car) manager.createQuery(
+				"FROM Car WHERE id="+idCar).getSingleResult();
+		//List<Participant> participants = (List<Participant>) manager.createQuery("FROM Participant").getResultList();
+		//Participant participant = participants.get(0);
+		participant.setCar(car);
+		car.getPassengers().add(participant);
+		car.takeSeat();
+		tx.commit();
 	}
 	
 }

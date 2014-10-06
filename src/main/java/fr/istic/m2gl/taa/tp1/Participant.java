@@ -1,5 +1,7 @@
 package fr.istic.m2gl.taa.tp1;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,7 +17,6 @@ import javax.persistence.Transient;
  * 
  */
 @Entity
-@Table(name = "PARTICIPANTS")
 public class Participant {
 	
 	
@@ -49,7 +50,7 @@ public class Participant {
 		this.name = name;
 	}
 
-	@OneToMany
+	@ManyToOne
 	public Car getCar() {
 		return car;
 	}
@@ -66,8 +67,8 @@ public class Participant {
 
 	public void setEvent(Event event) {
 		this.event = event;
+		event.getParticipants().add(this);
 	}
-	
 	
 	
 }
