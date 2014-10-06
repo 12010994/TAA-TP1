@@ -12,7 +12,7 @@ public class EventRessource {
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public List<Event> getEvents(){
 		System.out.println("Returns the events list");
-		return null; //TODO
+		return JpaTest.eventList.getEvents();
 	}
 	
 	@GET
@@ -30,12 +30,14 @@ public class EventRessource {
 	}
 	
 	@POST
+	@Path("/toto")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public void participateWithCar(int idEvent, Participant participant){
 		System.out.println("Adds a participant with a car");
 	}
 	
 	@POST
+	@Path("/titi")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public void participate(int idEvent, Participant participant){
 		System.out.println("Adds a participant with no car");

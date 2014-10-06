@@ -5,13 +5,13 @@
 	<groupId>fr.istic.m2gl.taa</groupId>
 	<artifactId>TAA-TP1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
-	<packaging>jar</packaging>
-	
+
+	<packaging>war</packaging>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<reporting>
 		<plugins>
 			<plugin>
@@ -38,20 +38,9 @@
 		</plugins>
 	</reporting>
 
-<!--  
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.1</version>
-				<configuration>
-					<path>/</path>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
--->
+	<!-- <build> <plugins> <plugin> <groupId>org.apache.tomcat.maven</groupId> 
+		<artifactId>tomcat7-maven-plugin</artifactId> <version>2.1</version> <configuration> 
+		<path>/</path> </configuration> </plugin> </plugins> </build> -->
 	<dependencies>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -81,6 +70,11 @@
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-server</artifactId>
+			<version>1.18.1</version>
+		</dependency>
+				<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-servlet</artifactId>
 			<version>1.18.1</version>
 		</dependency>
 		<dependency>
@@ -115,4 +109,20 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+
+	<build>
+		<!-- Generate compiled stuff in the folder used for developing mode -->
+		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<path>/</path>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

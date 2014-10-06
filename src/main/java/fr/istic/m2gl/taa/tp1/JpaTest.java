@@ -8,21 +8,20 @@ import javax.persistence.Persistence;
 public class JpaTest {
 
 	public static EntityManager manager;
+	public static EventList eventList;
+	public static EntityTransaction tx;
 
-	public JpaTest(EntityManager manager) {
-		JpaTest.manager = manager;
-	}
-	
-	public static void main(String[] args) {
+	static{
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
 		manager = factory.createEntityManager();
+		tx = manager.getTransaction(); 
+		eventList = new EventList(manager, tx);
+		run();
+	}
+	
+	public static void run() {
 		
-		JpaTest test = new JpaTest(manager); 
-
-		EntityTransaction tx = manager.getTransaction(); 
-			
-		EventList eventList = new EventList(manager, tx);
 		eventList.addEvent("11-11-11", "Redon");
 		eventList.addEvent("12-12-12", "Rennes");
 		Participant coco = eventList.addParticipant(1, "Coco");
