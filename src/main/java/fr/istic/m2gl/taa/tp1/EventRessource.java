@@ -19,8 +19,7 @@ public class EventRessource {
 	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Event getEvent(@PathParam("id")int idEvent){
-		System.out.println("Returns the selected event");
-		return null; //TODO
+		return JpaTest.eventList.getEvent(idEvent);
 	}
 	
 	@POST
